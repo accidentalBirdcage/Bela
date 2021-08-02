@@ -540,7 +540,7 @@ ifeq (,$(SYNTAX_FLAG))
 endif
 	$(AT) echo ' '
 
-build/pru/%.bin: pru/%.p
+build/pru/%.bin: pru/%.p include/PruArmCommon.h pru/board_specific.h
 ifeq (,$(SYNTAX_FLAG))
 	$(AT) echo 'Building $< into $@...'
 	$(AT) cd $(dir $@) && pasm -V2 -L -c -b $(BOARD_COMMON_FLAGS) $(BELA_DIR)/$< > /dev/null
@@ -548,7 +548,7 @@ ifeq (,$(SYNTAX_FLAG))
 endif
 	$(AT) echo ' '
 
-build/pru/%_bin.h: pru/%.p
+build/pru/%_bin.h: pru/%.p include/PruArmCommon.h pru/board_specific.h
 ifeq (,$(SYNTAX_FLAG))
 	$(AT) echo 'Building $< into $@...'
 	$(AT) cd $(dir $@) && pasm -V2 -L -c $(BOARD_COMMON_FLAGS) $(BELA_DIR)/"$<" > /dev/null
